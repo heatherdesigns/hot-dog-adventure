@@ -1,6 +1,6 @@
 # hot dog adventure inspired by Marshall
 # written by Heather
-# February 7, 2016
+# February 7, 2017
 
 # Welcome
 puts "Welcome to Heather's Hot Dog Stand!"
