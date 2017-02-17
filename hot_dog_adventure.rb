@@ -1,131 +1,173 @@
 # hot dog adventure inspired by Marshall
 # written by Heather
-# Last revision February 14, 2016
+# Last revision February 17, 2017
+
+require_relative "./hot_dog_functions.rb"
 
 # Welcome
+puts "-" * 35
 puts "Welcome to Heather's Hot Dog Stand!"
 puts "Home of the Hot Dog Adventure"
+puts "-" * 35
 
-puts "-------------------------------"
-
-# create an array to hold the hot dog toppings
-toppings = []
-
+# create a hash to hold the hot dog toppings
+toppings = Hash.new()
+   
 puts "Let's make a custom hot dog."
-puts "Would you like a bun: "
-puts "Enter 1 for yes, of course I want a bun."
-puts "Enter 2 for no, I don't need a bun."
+puts "Select your type of bun: "
+puts "Enter 1 for a classic New England bun."
+puts "Enter 2 for a sweet Hawaiian bun."
+puts "Enter 3 for a pretzel bun."
+puts "Enter 4 if you do not want a bun."
+print " > "
 bun = gets.chomp
-if bun == '1'
-  bun = "a bun"
-elsif bun == '2'
+num_options = 4
+bun = validate_input(bun, num_options)  
+if bun == "1"
+  bun = "a classic New England bun"
+elsif bun == "2"
+  bun = "a sweet Hawaiian bun"
+elsif bun == "3"
+  bun = "a pretzel bun"
+elsif bun == "4"
   bun = "no bun"
-end # end bun
-toppings.push(bun) # add bun to toppings array
+else
+end 
+toppings["bun"] = bun # add bun to toppings hash
 
-puts "What type of hot dog would you like?"
+puts "\nWhat type of hot dog would you like?"
 puts "Enter 1 for beef"
 puts "Enter 2 for turkey"
+print " > "
 hotDog = gets.chomp
-if hotDog == '1'
+hotDog = validate_input_of_2(hotDog)
+if hotDog.to_s == "1"
   hotDog = "beef hot dog"
-elsif hotDog == '2'
+elsif hotDog.to_s == "2"
   hotDog = "turkey hot dog"
-end # end hotDog
-toppings.push(hotDog) # add type of hot dog to the toppings array
+else
+end 
+toppings["hot_dog"] = hotDog # add type of hot dog to the toppings hash
 
-puts "Would you like any toppings on your hot dog?"
+puts "\nWould you like any toppings on your hot dog?"
 puts "Enter 1 for yes"
 puts "Enter 2 for no"
+print " > "
 topping1 = gets.chomp
-if topping1 == '1'
-  puts "Sweet! Let's build the ultimate hot dog!"
+topping1 = validate_input_of_2(topping1)
+if topping1.to_i == 1
+  puts "\nSweet! Let's build the ultimate hot dog!"
   puts "Would you like chili or sauerkraut on your hot dog?"
-  puts "I don't recommend both chili AND sauerkraut, so please just pick one."
   puts "Enter 1 for chili"
   puts "Enter 2 for sauerkraut"
+  puts "Enter 3 for both chili and sauerkraut"
+  puts "Enter 4 to skip these toppings"
+  print " > "
   answer = gets.chomp
-  if answer == '1'
-    topping1 = "chili,"
+  answer = validate_input_of_4(answer)
+  if answer.to_s == "1"
+    topping1 = "chili"
+  elsif answer.to_s == "2"
+    topping1 = "sauerkraut"
+  elsif answer.to_s == "3"
+    topping1 = "chili, sauerkraut"
   else
-    topping1 = "sauerkraut,"
+    topping1 = ""
   end
-  toppings.push(topping1) # add chili or sauerkraut to hot dog toppings array
+  toppings["first_topping"] = topping1 # add chili and/or/not sauerkraut to hot dog toppings hash
 else
   topping1 = "nothing else"
-  puts "You ordered a #{hotDog} with #{bun}." 
-  puts "ARRAY OUTPUT: You ordered a #{toppings[1]} with #{toppings[0]}." # print accessing items in array --> problem with this is that it's hard to know what index 0 and index 1 are.......
+  puts "You ordered a #{toppings["hot_dog"]} with #{toppings["bun"]}." 
   exit # exit program - hot dog making is done!
-end # end toppings
+end 
 
-puts "Would you like some cheese on your hot dog?"
+puts "\nWould you like some cheese on your hot dog?"
 puts "Enter 1 for yes"
 puts "Enter 2 for no"
+print " > "
 answer = gets.chomp
-if answer == '1'
+answer = validate_input_of_2(answer)
+if answer.to_i == 1
   puts "Choose your cheese:"
   puts "Enter 1 for cheddar"
   puts "Enter 2 for mozzarella"
   puts "Enter 3 for jalapeno jack"
+  puts "Enter 4 for ALL the cheeses!!!!"
+  print " > "
   cheese = gets.chomp
-  if cheese == '1'
-    cheese = "cheddar cheese,"
-  elsif cheese == '2'
-    cheese = "mozzarella cheese,"
+  cheese = validate_input_of_4(cheese)
+  if cheese.to_s == "1"
+    cheese = "cheddar cheese"
+  elsif cheese.to_s == "2"
+    cheese = "mozzarella cheese"
+  elsif cheese.to_s == "3"
+    cheese = "jalapeno jack cheese"
   else
-    cheese = "jalapeno jack cheese,"
+    cheese = "cheddar, mozzarella and jalapeno jack cheese"
   end
-else
+else # answer was 2 no cheese, move along.
 end
+toppings["cheese"] = cheese # add cheese to toppings hash
 
-toppings.push(cheese) # add cheese to toppings array
-
-puts "Would like to continue to add toppings?"
+puts "\nWould like to continue to add toppings?"
 puts "Enter 1 for yes"
 puts "Enter 2 for no"
+print " > "
 answer = gets.chomp
-if answer == '1'
-  puts "OK. Let's add a couple more toppings."
+answer = validate_input_of_2(answer)
+if answer.to_i == 1
+  puts "\nOK. Let's add a couple more toppings."
   puts "Would you like to add bacon or sweet pickles to your hot dog?"
   puts "Enter 1 for bacon"
   puts "Enter 2 for sweet pickles"
+  puts "Enter 3 for bacon AND sweet pickles"
+  puts "Enter 4 to skip these toppings"
+  print " > "
   moreToppings = gets.chomp
-  if moreToppings == '1'
-    moreToppings = "bacon,"
+  moreToppings = validate_input_of_4(moreToppings)
+  if moreToppings.to_s == "1"
+    moreToppings = "bacon"
+  elsif moreToppings.to_s == "2"
+    moreToppings = "sweet pickles"
+  elsif moreToppings.to_s == "3"
+    moreToppings = "bacon, sweet pickles"
   else
-    moreToppings = "sweet pickles,"
+    moreToppings = ""
   end
 else
-  puts "You ordered a #{hotDog} with #{topping1} #{cheese} and #{bun}."
-  puts "ARRAY OUTPUT: You ordered a #{toppings[1]} with #{toppings[2]} #{toppings[3]} and #{toppings[0]}."
+  puts "You ordered a #{toppings["hot_dog"]} with #{toppings["first_topping"]} #{toppings["cheese"]} and #{toppings["bun"]}."
   puts "Mmmm..... that sounds delicious. Enjoy your hot dog!"
   exit
 end
-toppings.push(moreToppings) # add bacon or sweet pickles to the toppings array
+toppings["more_toppings"] = moreToppings # add bacon or/and/not sweet pickles to the toppings hash
 
-puts "Let's add one more topping."
+puts "\nLet's add one more topping."
 puts "How about something with a little more crunch?"
 puts "Would you like to add Fritos corn chips or french fried onions?"
 puts "Enter 1 for Fritos corn chips"
 puts "Enter 2 for french fried onions"
+puts "Enter 3 for Fritos corn chips AND french fried onions"
+puts "Enter 4 to skip these toppings"
+print " > "
 crunch = gets.chomp
-if crunch == '1'
-  crunch = "Fritos corn chips,"
+crunch = validate_input_of_4(crunch)
+if crunch.to_s == "1"
+  crunch = "Fritos corn chips"
+elsif crunch.to_s == "2"
+  crunch = "french fried onions"
+elsif crunch.to_s == "3"
+  crunch = "Fritos corn chips, french fried onions"
 else
-  crunch = "french fried onions,"
+  crunch = ""
 end
-toppings.push(crunch) # add fritos or fried onions to the toppings array
+toppings["crunch"] = crunch # add fritos or fried onions to the toppings hash
+ 
+# print hot dog order accessing the items in the hash
+puts "\nThis is the HASH OUTPUT accessing the individual values:"
+puts "You ordered a #{toppings["hot_dog"]} with #{toppings["bun"]}, #{toppings["first_topping"]}, #{toppings["cheese"]}, #{toppings["more_toppings"]} and #{toppings["crunch"]}."
 
-# wrap it up! 
-puts "\nORIGINAL OUTPUT: You ordered a #{hotDog} hot dog with #{topping1} #{cheese} #{moreToppings} #{crunch} and #{bun}."
-puts "Mmmm..... that sounds delicious. Enjoy your hot dog!"
-
-# print hot dog order again, this time accessing the items in the toppings array and printing via a loop
-puts "\nThis is the ARRAY OUTPUT accessing the individual indexes:"
-puts "You ordered a #{toppings[1]} with #{toppings[2]} #{toppings[3]} #{toppings[4]} #{toppings[5]} and #{toppings[0]}."
-
-
-puts "\nThis is the ARRAY OUTPUT of hot dog toppings using a loop:"
-toppings.each do |item|
-  puts "#{item}"
+puts "\nThis is the HASH OUTPUT of hot dog toppings using a loop:"
+puts "Hot Dog, bun and toppings: "
+toppings.each_value do |value|
+  puts "\t#{value}"
 end
