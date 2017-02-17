@@ -40,7 +40,8 @@ puts "Enter 1 for beef"
 puts "Enter 2 for turkey"
 print " > "
 hotDog = gets.chomp
-hotDog = validate_input_of_2(hotDog)
+num_options = 2
+hotDog = validate_input(hotDog, num_options)
 if hotDog.to_s == "1"
   hotDog = "beef hot dog"
 elsif hotDog.to_s == "2"
@@ -54,7 +55,8 @@ puts "Enter 1 for yes"
 puts "Enter 2 for no"
 print " > "
 topping1 = gets.chomp
-topping1 = validate_input_of_2(topping1)
+num_options = 2
+topping1 = validate_input(topping1, num_options)
 if topping1.to_i == 1
   puts "\nSweet! Let's build the ultimate hot dog!"
   puts "Would you like chili or sauerkraut on your hot dog?"
@@ -64,7 +66,8 @@ if topping1.to_i == 1
   puts "Enter 4 to skip these toppings"
   print " > "
   answer = gets.chomp
-  answer = validate_input_of_4(answer)
+  num_options = 4
+  answer = validate_input(answer, num_options)
   if answer.to_s == "1"
     topping1 = "chili"
   elsif answer.to_s == "2"
@@ -86,7 +89,8 @@ puts "Enter 1 for yes"
 puts "Enter 2 for no"
 print " > "
 answer = gets.chomp
-answer = validate_input_of_2(answer)
+num_options = 2
+answer = validate_input(answer, num_options)
 if answer.to_i == 1
   puts "Choose your cheese:"
   puts "Enter 1 for cheddar"
@@ -95,7 +99,8 @@ if answer.to_i == 1
   puts "Enter 4 for ALL the cheeses!!!!"
   print " > "
   cheese = gets.chomp
-  cheese = validate_input_of_4(cheese)
+  num_options = 4
+  cheese = validate_input(cheese,  num_options)
   if cheese.to_s == "1"
     cheese = "cheddar cheese"
   elsif cheese.to_s == "2"
@@ -114,7 +119,8 @@ puts "Enter 1 for yes"
 puts "Enter 2 for no"
 print " > "
 answer = gets.chomp
-answer = validate_input_of_2(answer)
+num_options = 2
+answer = validate_input(answer, num_options)
 if answer.to_i == 1
   puts "\nOK. Let's add a couple more toppings."
   puts "Would you like to add bacon or sweet pickles to your hot dog?"
@@ -124,7 +130,8 @@ if answer.to_i == 1
   puts "Enter 4 to skip these toppings"
   print " > "
   moreToppings = gets.chomp
-  moreToppings = validate_input_of_4(moreToppings)
+  num_options = 4
+  moreToppings = validate_input(moreToppings, num_options)
   if moreToppings.to_s == "1"
     moreToppings = "bacon"
   elsif moreToppings.to_s == "2"
@@ -150,7 +157,8 @@ puts "Enter 3 for Fritos corn chips AND french fried onions"
 puts "Enter 4 to skip these toppings"
 print " > "
 crunch = gets.chomp
-crunch = validate_input_of_4(crunch)
+num_options = 4
+crunch = validate_input(crunch, num_options)
 if crunch.to_s == "1"
   crunch = "Fritos corn chips"
 elsif crunch.to_s == "2"
