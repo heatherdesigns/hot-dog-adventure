@@ -1,6 +1,10 @@
 # hot dog adventure inspired by Marshall
 # written by Heather
+<<<<<<< HEAD
 # Last revision February 14, 2016
+=======
+# February 7, 2017
+>>>>>>> c084463184de7cd61f4e43ae90972c51e818ecce
 
 # Welcome
 puts "Welcome to Heather's Hot Dog Stand!"
