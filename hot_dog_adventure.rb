@@ -1,12 +1,5 @@
 # hot dog adventure inspired by Marshall
 # written by Heather
-<<<<<<< HEAD
-<<<<<<< HEAD
-# Last revision February 14, 2016
-=======
-# February 7, 2017
->>>>>>> c084463184de7cd61f4e43ae90972c51e818ecce
-=======
 # Last revision February 17, 2017
 
 require_relative "./hot_dog_functions.rb"
