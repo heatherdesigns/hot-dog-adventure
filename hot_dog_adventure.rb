@@ -3,7 +3,6 @@
 # Last revision February 17, 2017
 
 require_relative "./hot_dog_functions.rb"
->>>>>>> toppings-hash
 
 # Welcome
 puts "-" * 35
